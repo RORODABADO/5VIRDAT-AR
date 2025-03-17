@@ -44,6 +44,7 @@ Ce projet Kubernetes met en place un environnement de déploiement pour une appl
 Le manifest Kubernetes définit plusieurs composants :
 
 ### 1️⃣ Namespaces
+Les Namespaces sont utilisée avec des composants de haut niveau seulement (pods, ingress, jobs, deployments, replicaset,configmap, secret etc...), il permet de relier ces composant dans différents environnements.
 Trois namespaces sont créés pour organiser les déploiements :
 - `dev`
 - `preprod`
@@ -63,6 +64,7 @@ L'application est déployée dans chaque environnement avec un **Deployment Kube
 - Variables d'environnement injectées via le ConfigMap
 
 ### 4️⃣ Services (NodePort)
+Le type NodePort permet d’acéder à ses pods (applications) depuis l'exterieur de kubernetes.
 Un service de type **NodePort** est défini pour chaque environnement afin de rendre l'application accessible :
 
 | Environnement | Namespace | Port Exposé |
