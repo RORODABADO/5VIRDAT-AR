@@ -65,6 +65,8 @@ Ensuite nous pouvons vérifier les composant que nous venons de déployer avec l
 
 k get all 
 
+
+
 ![image](https://github.com/user-attachments/assets/f2f87e0d-9beb-4e7c-b6c9-de5d87675a1f)
 
 
