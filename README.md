@@ -145,7 +145,22 @@ Nous ponvons voir que les transactions remonte bien (des 3 applications des diff
 
 # Déploiement de la deuxième application
 
-Pour cette deuxième applications, nous allons utilisée "django-admnlte".
+Pour cette deuxième applications, nous allons utilisée "django-admnlte", nous allons build l'image et push l'image sur mon docker hub. A savoir que l'image docker à été optimiser pour la rendre légère en utilisant python:3.11.5-alpine et nginx:alpine-slim. Et l'image (non-build) ce trouve sur mon repos github : "https://github.com/RORODABADO/5VIRDAT-AR-APPLI2/tree/master"
+
+Copie du repos de l'application : 
+
+```sh
+git clone https://github.com/RORODABADO/5VIRDAT-AR-APPLI2/tree/master
+```
+
+```sh
+cd 5VIRDAT-AR-APPLI2/
+```
+Build et push de l'image sur mon docker hub :
+
+```sh
+docker build -t antoinerotinat/django-adminlte:latest . && docker push antoinerotinat/django-adminlte:latest
+```
 
 Cette application fonctionne avec une base de données mysql.
 
