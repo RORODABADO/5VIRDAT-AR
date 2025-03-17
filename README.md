@@ -61,7 +61,7 @@ k create -f rocket-ecommerce.yaml
 
 ![image](https://github.com/user-attachments/assets/b0764824-3eda-454e-9468-9eff0e673311)
 
-Ensuite nous pouvons vérifier les composant que nous venons de déployer avec la commande : 
+Ensuite nous pouvons vérifier les composant que nous venons de déployer avec la commande (il vaut être dans le bon namespace ou sont les composants) : 
 
 k get all 
 
