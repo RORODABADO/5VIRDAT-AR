@@ -33,7 +33,7 @@ Lancez Minikube avec la commande suivante :
 minikube start --listen-address=0.0.0.0 --memory=max --cpus=max --kubernetes-version=v1.32.0
 ```
 
-## Description du Déploiement
+## Description du Déploiement de la première application
 Ce projet Kubernetes met en place un environnement de déploiement pour une application e-commerce, **Rocket E-commerce**, sur trois environnements distincts :
 - **dev** (développement)
 - **preprod** (préproduction)
