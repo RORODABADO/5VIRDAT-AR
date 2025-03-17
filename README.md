@@ -54,6 +54,7 @@ Chaque environnement possède un ConfigMap stockant les variables d'environnemen
 - `rocket-ecommerce-config` (défini pour chaque namespace)
 
 ### 3️⃣ Deployments
+Un Deployment est un objet Kubernetes qui définit et gère le déploiement d’une application sous forme de pods.
 L'application est déployée dans chaque environnement avec un **Deployment Kubernetes**. 
 - Nom du déploiement : `rocket-ecommerce-deployment`
 - Nombre de réplicas : `1` (modifiable pour la scalabilité)
