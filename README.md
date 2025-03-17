@@ -73,9 +73,10 @@ Un service de type **NodePort** est défini pour chaque environnement afin de re
 ## Déploiement des Composants
 
 ### Appliquer les fichiers de configuration Kubernetes
-Le fichier yaml ce trouve sur ce repo !
+Le fichier yaml ce trouve sur ce repo (https://github.com/RORODABADO/5VIRDAT-AR/blob/main/rocket-ecommerce.yaml) !
 ```sh
-kubectl apply -f deployment.yaml
+git clone https://github.com/RORODABADO/5VIRDAT-AR/blob/main/rocket-ecommerce.yaml
+kubectl apply -f rocket-ecommerce.yaml
 ```
 
 ### Vérifier les namespaces créés
