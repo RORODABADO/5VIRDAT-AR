@@ -91,11 +91,12 @@ kubectl get namespaces
 ### Vérifier que les pods sont en cours d'exécution
 ```sh
 kubectl get pods -n dev
-![image](https://github.com/user-attachments/assets/73e5d9f6-1eb8-4014-a2b5-bcf81ed1d8cb)
-
 kubectl get pods -n preprod
 kubectl get pods -n prod
 ```
+![image](https://github.com/user-attachments/assets/73e5d9f6-1eb8-4014-a2b5-bcf81ed1d8cb)
+![image](https://github.com/user-attachments/assets/528a4b59-8776-4652-8af8-7b8743ba0363)
+![image](https://github.com/user-attachments/assets/073a0e50-d1a0-42c3-9618-3e067c40abfc)
 
 ### Vérifier les services exposés
 ```sh
