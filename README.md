@@ -51,6 +51,7 @@ Trois namespaces sont créés pour organiser les déploiements :
 - `prod`
 
 ### 2️⃣ ConfigMaps
+Les ConfigsMaps servent à stocker des données de configuration sous forme de paires clé-valeur, a séparer la configuration de l'application du code.
 Chaque environnement possède un ConfigMap stockant les variables d'environnement de l'application (c'est dans ces ConfigMaps qu'il faudra rentrer les clés API) :
 - `rocket-ecommerce-config` (défini pour chaque namespace)
 
