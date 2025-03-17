@@ -6,6 +6,8 @@ Avant de commencer, assurez-vous d'avoir une instance Minikube opérationnelle. 
 
 Avoir aussi docker et docker compose de fonctionnelle.
 
+Avoir des clés API fonctionnelle de STRIPE, nécéssaire pour la première application
+
 A savoir que tout les manifests en yaml son sur le repo !
 
 Pour cette première application nous allons utiliser "Rocket eCommerce", nous allons build l'image et push l'image sur mon docker hub. A savoir que l'image docker à été optimiser pour la rendre légère en utilisant python:3.11.5-alpine et nginx:alpine-slim. Et l'image (non-build) ce trouve sur mon repos github : "https://github.com/RORODABADO/5VIRDAT-AR-APPLI1"
