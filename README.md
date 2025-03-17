@@ -133,6 +133,11 @@ Une fois nos applications exposé nous pouvons nous connecter via les url plus h
 - PreProd : ![image](https://github.com/user-attachments/assets/7c2cf121-7a4e-4574-bd9b-d35657ca7f08)
 - Prod :![image](https://github.com/user-attachments/assets/63b0888f-9d87-4293-8244-ec1b5ab38c9f)
 
+Nous pouvons aussi ouvrir un shell sur le pod pour véfifer que les variables ont bien été injecté : 
+```sh
+k exec -it <nom-du-pod> -- printenv
+```
+
 Pour tester le bon fonctionnement avec l'api STRIPE, nous pouvons effecter un achat sur l'application pour voir si cela remonte bien dans le dashboard STRIPE (pour l'utilisation de l'application, il faut ce référé sur le repo de celle-ci) : 
 
 ![image](https://github.com/user-attachments/assets/abd8ecee-2d4f-4705-99fa-5c42aa7ad30f)
