@@ -36,7 +36,7 @@ k config set-context --current --namespace=nom-du-namespace
 
 Déploiement / Configuration de la première application : 
 
-Pour cette première nous allons utiliser "Rocket eCommerce", nous allons build l'image et push l'image sur mon docker hub. 
+Pour cette première application nous allons utiliser "Rocket eCommerce", nous allons build l'image et push l'image sur mon docker hub. 
 A savoir que l'image docker à été optimiser pour la rendre légère en utilisant python:3.11.5-alpine et nginx:alpine-slim. 
 Et l'image (non-build) ce trouve sur mon repos git hub : "https://github.com/RORODABADO/5VIRDAT-AR-APPLI1"
 
