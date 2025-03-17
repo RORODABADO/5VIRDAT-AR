@@ -6,7 +6,7 @@ Avant de commencer, assurez-vous d'avoir une instance Minikube opérationnelle. 
 
 Avoir aussi docker et docker compose de fonctionnelle.
 
-Avoir des clés API fonctionnelle de STRIPE, nécéssaire pour la première application
+Avoir des clés API fonctionnelle de STRIPE, nécéssaire pour la première application (https://dashboard.stripe.com)
 
 A savoir que tout les manifests en yaml son sur le repo !
 
@@ -109,11 +109,11 @@ kubectl get services -n prod
 
 ### Rendre accesible l'application depuis l'addresse ip publique de notre minikube
 
-| Environnement | Namespace | Port Exposé Publiquement |
-|--------------|-----------|-------------|
-| Développement | dev | 5005 |
-| Préproduction | preprod | 5006 |
-| Production | prod | 5007 |
+| Environnement | Namespace | Port Exposé Publiquement | URL |
+|--------------|-----------|-------------|-------------|
+| Développement | dev | 5005 | http://188.213.128.250:5005
+| Préproduction | preprod | 5006 | http://188.213.128.250:5006
+| Production | prod | 5007 | http://188.213.128.250:5007
 
 Ces commandes permet de forward les port des pods des 3 environnement pour les rendre accésible depuis l'ip publique du minikube
 ```sh
@@ -121,6 +121,13 @@ kubectl port-forward --address 0.0.0.0 pod/$(kubectl get pod -l app=rocket-ecomm
 kubectl port-forward --address 0.0.0.0 pod/$(kubectl get pod -l app=rocket-ecommerce -n preprod -o jsonpath="{.items[0].metadata.name}") -n preprod 5006:5005
 kubectl port-forward --address 0.0.0.0 pod/$(kubectl get pod -l app=rocket-ecommerce -n prod -o jsonpath="{.items[0].metadata.name}") -n prod 5007:5005
 ```
+
+### Tests du bon fonctionnement sur les 3 applications avec l'api STIPE 
+Une fois nos applications exposé nous pouvons nous connecter via les url plus haut : 
+- Dev : ![image](https://github.com/user-attachments/assets/c6359b09-da53-436d-9e88-5026f8b28590)
+- PreProd : ![image](https://github.com/user-attachments/assets/7c2cf121-7a4e-4574-bd9b-d35657ca7f08)
+- Prod :![image](https://github.com/user-attachments/assets/63b0888f-9d87-4293-8244-ec1b5ab38c9f)
+
 
 ## Auteurs
 - **Antoine Rotinat**
