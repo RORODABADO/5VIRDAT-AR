@@ -11,29 +11,6 @@ Lancez Minikube avec la commande suivante :
 
 minikube start --listen-address=0.0.0.0 --memory=max --cpus=max --kubernetes-version=v1.32.0
 
-Création des namespace : 
-
-Dans le cadre du projet et en accord avec la consigne nous allons créer 3 environnement dev|preprod|prod (namespace) avec le manifest "create-namespace.yaml" : 
-
-k create -f create-namespace.yaml
-
-Donc appartire de là nous venons de créer 3 environnements (namespace) : 
-- dev-namespace
-- preprod-namespace
-- prod-namespace
-
-Pour confirmer et voir les namespace que nous venons de créer nous pouvon faire cette commande : 
-
-k get namespaces
-
-![image](https://github.com/user-attachments/assets/84cf19dd-1317-4068-b342-1ac2e782eaba)
-
-
-Pour info, par default avec minikube nous somme dans l'envrionnement (namespace) "default", pour changer d'envrionnement nous utiliserons la commande suivante : 
-
-k config set-context --current --namespace=nom-du-namespace
-
-
 Déploiement / Configuration de la première application : 
 
 Pour cette première application nous allons utiliser "Rocket eCommerce", nous allons build l'image et push l'image sur mon docker hub. 
@@ -64,6 +41,117 @@ k create -f rocket-ecommerce.yaml
 Ensuite nous pouvons vérifier les composant que nous venons de déployer avec la commande (il vaut être dans le bon namespace ou sont les composants) : 
 
 k get all 
+
+# Projet Kubernetes - Déploiement Multi-Environnements avec Minikube
+
+## Prérequis
+Avant de commencer, assurez-vous d'avoir une instance Minikube opérationnelle. Pour ce projet, nous utilisons **Minikube version 1.32.0**.
+
+### Installation de Minikube
+Si Minikube n'est pas encore installé, suivez les instructions officielles :
+[Minikube Installation Guide](https://minikube.sigs.k8s.io/docs/start/)
+
+### Démarrage de Minikube
+Lancez Minikube avec la commande suivante :
+
+```sh
+minikube start --listen-address=0.0.0.0 --memory=max --cpus=max --kubernetes-version=v1.32.0
+```
+
+## Description du Déploiement
+Ce projet Kubernetes met en place un environnement de déploiement pour une application e-commerce, **Rocket E-commerce**, sur trois environnements distincts :
+- **dev** (développement)
+- **preprod** (préproduction)
+- **prod** (production)
+
+Le manifest Kubernetes définit plusieurs composants :
+
+### 1️⃣ Namespaces
+Trois namespaces sont créés pour organiser les déploiements :
+- `dev`
+- `preprod`
+- `prod`
+
+### 2️⃣ ConfigMaps
+Chaque environnement possède un ConfigMap stockant les variables d'environnement de l'application :
+- `rocket-ecommerce-config` (défini pour chaque namespace)
+
+### 3️⃣ Deployments
+L'application est déployée dans chaque environnement avec un **Deployment Kubernetes**. 
+- Nom du déploiement : `rocket-ecommerce-deployment`
+- Nombre de réplicas : `1` (modifiable pour la scalabilité)
+- Conteneur utilisé : `antoinerotinat/rocket-ecommerce:latest`
+- Port exposé : `5005`
+- Variables d'environnement injectées via le ConfigMap
+
+### 4️⃣ Services (NodePort)
+Un service de type **NodePort** est défini pour chaque environnement afin de rendre l'application accessible :
+
+| Environnement | Namespace | Port Exposé |
+|--------------|-----------|-------------|
+| Développement | dev | 30081 |
+| Préproduction | preprod | 30082 |
+| Production | prod | 30083 |
+
+Chaque service est accessible via :
+```sh
+http://<IP_PUBLIQUE>:<NODEPORT>
+```
+Exemple pour `dev` :
+```sh
+http://<IP_PUBLIQUE>:30081
+```
+
+## Déploiement des Composants
+### Appliquer les fichiers de configuration Kubernetes
+```sh
+kubectl apply -f deployment.yaml
+```
+
+### Vérifier les namespaces créés
+```sh
+kubectl get namespaces
+```
+
+### Vérifier que les pods sont en cours d'exécution
+```sh
+kubectl get pods -n dev
+kubectl get pods -n preprod
+kubectl get pods -n prod
+```
+
+### Vérifier les services exposés
+```sh
+kubectl get services -n dev
+kubectl get services -n preprod
+kubectl get services -n prod
+```
+
+## Accès aux Applications
+Pour accéder à l'application sur un environnement donné, utilisez :
+```sh
+http://<IP_PUBLIQUE>:<NODEPORT>
+```
+Exemple pour l'environnement `dev` :
+```sh
+http://<IP_PUBLIQUE>:30081
+```
+
+## Arrêt et Nettoyage
+Pour arrêter Minikube et nettoyer l'environnement :
+```sh
+minikube stop
+kubectl delete namespace dev preprod prod
+```
+
+## Auteurs
+- **Votre Nom** - *Rôle dans le projet*
+- **Autres contributeurs**
+
+## Licence
+Ce projet est sous licence **MIT** / **Autre Licence** (ajuster selon votre choix).
+
+
 
 ![image](https://github.com/user-attachments/assets/f2f87e0d-9beb-4e7c-b6c9-de5d87675a1f)
 
