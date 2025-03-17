@@ -2,7 +2,7 @@
 Prérequis
 
 Avant de commencer, assurez-vous d'avoir une instance Minikube opérationnelle. Pour ce projet, nous utilisons Minikube version 1.32.0.
-Avoir aussi docker et docker compose de fonctionnelle 
+Avoir aussi docker et docker compose de fonctionnelle. 
 A savoir que tout les manifest en yaml son sur le repo !
 
 Démarrage de Minikube
