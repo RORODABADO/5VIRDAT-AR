@@ -35,7 +35,7 @@ Lancez Minikube avec la commande suivante :
 minikube start --listen-address=0.0.0.0 --memory=max --cpus=max --kubernetes-version=v1.32.0
 ```
 
-## Description du Déploiement de la première application
+## Déploiement de la première application
 Ce projet Kubernetes met en place un environnement de déploiement pour une application e-commerce, **Rocket E-commerce**, sur trois environnements distincts :
 - **dev** (développement)
 - **preprod** (préproduction)
@@ -106,21 +106,17 @@ kubectl get services -n prod
 ![image](https://github.com/user-attachments/assets/bc700115-e6d0-4ee6-b504-a33ffd4bcf80)
 ![image](https://github.com/user-attachments/assets/b576d080-cb13-4b91-9c23-3b5f4c62bc93)
 
-## Accès aux Applications
-Pour accéder à l'application sur un environnement donné, utilisez :
+### Rendre accesible l'application depuis l'addresse ip publique de notre minikube
+| Environnement | Namespace | Port Exposé Publiquement |
+|--------------|-----------|-------------|
+| Développement | dev | 5005 |
+| Préproduction | preprod | 5006 |
+| Production | prod | 5007 |
+Ces commandes permet de forward les port des pods des 3 environnement pour les rendre accésible depuis l'ip publique du minikube
 ```sh
-http://<IP_PUBLIQUE>:<NODEPORT>
-```
-Exemple pour l'environnement `dev` :
-```sh
-http://<IP_PUBLIQUE>:30081
-```
-
-## Arrêt et Nettoyage
-Pour arrêter Minikube et nettoyer l'environnement :
-```sh
-minikube stop
-kubectl delete namespace dev preprod prod
+kubectl port-forward --address 0.0.0.0 pod/$(kubectl get pod -l app=rocket-ecommerce -n dev -o jsonpath="{.items[0].metadata.name}") -n dev 5005:5005
+kubectl port-forward --address 0.0.0.0 pod/$(kubectl get pod -l app=rocket-ecommerce -n preprod -o jsonpath="{.items[0].metadata.name}") -n preprod 5006:5005
+kubectl port-forward --address 0.0.0.0 pod/$(kubectl get pod -l app=rocket-ecommerce -n prod -o jsonpath="{.items[0].metadata.name}") -n prod 5007:5005
 ```
 
 ## Auteurs
