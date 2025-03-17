@@ -89,6 +89,7 @@ kubectl get namespaces
 ```
 
 ### Vérifier que les pods sont en cours d'exécution
+Ces commandes vont nous permettre de voir les pod créer sur les 3 environnements 
 ```sh
 kubectl get pods -n dev
 kubectl get pods -n preprod
@@ -99,6 +100,7 @@ kubectl get pods -n prod
 ![image](https://github.com/user-attachments/assets/073a0e50-d1a0-42c3-9618-3e067c40abfc)
 
 ### Vérifier les services exposés
+Ces commandes vont nous permettre de voir les services créer sur les 3 environnements 
 ```sh
 kubectl get services -n dev
 kubectl get services -n preprod
