@@ -51,6 +51,24 @@ Avoir aussi docker et docker compose de fonctionnelle.
 
 A savoir que tout les manifests en yaml son sur le repo !
 
+Pour cette première application nous allons utiliser "Rocket eCommerce", nous allons build l'image et push l'image sur mon docker hub. A savoir que l'image docker à été optimiser pour la rendre légère en utilisant python:3.11.5-alpine et nginx:alpine-slim. Et l'image (non-build) ce trouve sur mon repos github : "https://github.com/RORODABADO/5VIRDAT-AR-APPLI1"
+
+Copie du repos de l'application : 
+
+```sh
+git clone https://github.com/RORODABADO/5VIRDAT-AR-APPLI1
+```
+
+```sh
+cd 5VIRDAT-AR-APPLI1/
+```
+Build et push de l'image sur mon docker hub :
+
+```sh
+docker build -t antoinerotinat/rocket-ecommerce:latest . && docker push antoinerotinat/rocket-ecommerce:latest
+```
+Nous utiliserons cette image pour déployer notre application avec minikube
+
 ### Démarrage de Minikube
 Lancez Minikube avec la commande suivante :
 
