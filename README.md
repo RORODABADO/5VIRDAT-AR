@@ -157,8 +157,8 @@ En premier il faut télécharger le manifest en yaml puis créer les composants 
 git clone https://github.com/RORODABADO/5VIRDAT-AR/blob/main/django-adminlte.yaml
 kubectl apply -f django-adminlte.yaml
 ```
-### Secret
-Dans ce manifest nous déployons un nouveau composant à kubernetes "Secret", ce composantdans Kubernetes permet de stocker des informations sensibles telles que des mots de passe, des jetons d'authentification ou des clés d'API. Ces données sont encodées en base64 pour être stockées en toute sécurité dans Kubernetes, et elles ne sont pas visibles en texte clair dans les fichiers de configuration.
+### 5️⃣ Secret
+Dans ce manifest nous déployons un nouveau composant à kubernetes "Secret", ce composant dans Kubernetes permet de stocker des informations sensibles telles que des mots de passe, des jetons d'authentification ou des clés d'API. Ces données sont encodées en base64 ou par des algorithme plus sécurisé pour être ainsi injecter dans d'autre composants, et elles ne sont pas visibles en texte clair dans les fichiers de configuration.
 
 Ensuite j'ai forcer la creation de la bdd en ouvrant un shell sur le pod de mon application : 
 
