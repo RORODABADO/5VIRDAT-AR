@@ -134,7 +134,7 @@ Pour tester le bon fonctionnement avec l'api STRIPE, nous pouvons effecter un ac
 ![image](https://github.com/user-attachments/assets/abd8ecee-2d4f-4705-99fa-5c42aa7ad30f)
 ![image](https://github.com/user-attachments/assets/0a7a1c11-89d9-4253-a0c8-4540558f4bd3)
 
-Nous ponvons voir que les transactions remonte bien et que les clé api ce sont bien injecter via les ConfigMap : 
+Nous ponvons voir que les transactions remonte bien (des 3 applications des diffrents environnement) et que les clé api ce sont bien injecter via les ConfigMap : 
 
 ![image](https://github.com/user-attachments/assets/f4417728-dec9-4795-8b03-bf0aa32744fa)
 
