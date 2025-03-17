@@ -1,0 +1,133 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: django-adminlte-config
+  namespace: dev
+data:
+  DEBUG: "TRUE"
+  FLASK_APP: "run.py"
+  FLASK_DEBUG: "True"
+  DB_ENGINE: "mysql"
+  DB_HOST: "mysql-service-dev"
+  DB_NAME: "appseed_db_dev"
+  DB_USERNAME: "root"
+  DB_PASS: "pass_dev"
+  DB_PORT: "3306"
+---
+# Secret pour MySQL (stocke le mot de passe en base64 pour plus de sécurité)
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret-dev
+  namespace: dev
+type: Opaque
+data:
+  MYSQL_ROOT_PASSWORD: "cGFzc19kZXY="  # "pass_dev" encodé en base64
+---
+# PersistentVolumeClaim (PVC) pour stocker les données MySQL
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc-dev
+  namespace: dev
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+# Deployment MySQL pour DEV
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment-dev
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+      tier: database
+  template:
+    metadata:
+      labels:
+        app: mysql
+        tier: database
+    spec:
+      securityContext:
+        fsGroup: 999  # Assure que MySQL peut écrire dans le volume
+      containers:
+      - name: mysql
+        image: mysql:latest
+        securityContext:
+          runAsUser: 999  # UID MySQL dans l'image officielle
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret-dev
+              key: MYSQL_ROOT_PASSWORD
+        volumeMounts:
+        - name: mysql-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-storage
+        persistentVolumeClaim:
+          claimName: mysql-pvc-dev
+---
+# Service MySQL pour DEV (expose MySQL à l'intérieur du cluster)
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service-dev
+  namespace: dev
+spec:
+  selector:
+    app: mysql
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+---
+# Deployment de l'application Django pour DEV
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-adminlte-deployment
+  namespace: dev
+  labels:
+    app: django-adminlte
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django-adminlte
+  template:
+    metadata:
+      labels:
+        app: django-adminlte
+    spec:
+      containers:
+      - name: django-adminlte
+        image: antoinerotinat/django-adminlte:latest
+        ports:
+        - containerPort: 5005
+        envFrom:
+        - configMapRef:
+            name: django-adminlte-config
+---
+# Service pour exposer l'application Django en DEV (NodePort)
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-adminlte-service
+  namespace: dev
+spec:
+  selector:
+    app: django-adminlte
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 5005
+      nodePort: 30084
