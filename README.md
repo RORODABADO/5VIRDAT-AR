@@ -120,15 +120,6 @@ kubectl delete namespace dev preprod prod
 ```
 
 ## Auteurs
-- **Votre Nom** - *Rôle dans le projet*
-- **Autres contributeurs**
-
-## Licence
-Ce projet est sous licence **MIT** / **Autre Licence** (ajuster selon votre choix).
-
-
-
-![image](https://github.com/user-attachments/assets/f2f87e0d-9beb-4e7c-b6c9-de5d87675a1f)
-
+- **Antoine Rotinat**
 
 
