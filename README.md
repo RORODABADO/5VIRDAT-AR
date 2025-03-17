@@ -47,9 +47,9 @@ k get all
 ## Prérequis
 Avant de commencer, assurez-vous d'avoir une instance Minikube opérationnelle. Pour ce projet, nous utilisons **Minikube version 1.32.0**.
 
-### Installation de Minikube
-Si Minikube n'est pas encore installé, suivez les instructions officielles :
-[Minikube Installation Guide](https://minikube.sigs.k8s.io/docs/start/)
+Avoir aussi docker et docker compose de fonctionnelle.
+
+A savoir que tout les manifests en yaml son sur le repo !
 
 ### Démarrage de Minikube
 Lancez Minikube avec la commande suivante :
