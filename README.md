@@ -48,3 +48,24 @@ Build et push de l'image sur mon docker hub :
 docker build -t antoinerotinat/rocket-ecommerce:latest . && docker push antoinerotinat/rocket-ecommerce:latest
 
 Nous utiliserons cette image pour déployer notre application avec minikube
+
+Dans ce repos un fichier nommé "rocket-ecommerce.yaml", c'est le manifest pour déployer notre application dans le namespace "dev-namespace".
+Dans ce manifest nous allons créer 3 composants tous relier au namespace "dev-namespace" : 
+
+- un ConfiMap qui va nous permettre d'injecter les variables d'environnement (clé api) nécésaire pour le fonctionnement de l'application avec stripe 
+- un Deployment qui va nous permet de créer l'application en spécifiant l'image que nous venons de builder précédament
+- un Service, qui va permet de mettre en réseau notre application (type LoadBalancer)
+
+Pour éxecuter le manifest, voici la commande : 
+k create -f rocket-ecommerce.yaml
+
+![image](https://github.com/user-attachments/assets/b0764824-3eda-454e-9468-9eff0e673311)
+
+Ensuite nous pouvons vérifier les composant que nous venons de déployer avec la commande : 
+
+k get all 
+
+![image](https://github.com/user-attachments/assets/f2f87e0d-9beb-4e7c-b6c9-de5d87675a1f)
+
+
+
