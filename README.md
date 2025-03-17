@@ -68,17 +68,10 @@ Un service de type **NodePort** est défini pour chaque environnement afin de re
 | Préproduction | preprod | 30082 |
 | Production | prod | 30083 |
 
-Chaque service est accessible via :
-```sh
-http://<IP_PUBLIQUE>:<NODEPORT>
-```
-Exemple pour `dev` :
-```sh
-http://<IP_PUBLIQUE>:30081
-```
-
 ## Déploiement des Composants
+
 ### Appliquer les fichiers de configuration Kubernetes
+Le fichier yaml ce trouve sur ce repo !
 ```sh
 kubectl apply -f deployment.yaml
 ```
@@ -87,6 +80,7 @@ kubectl apply -f deployment.yaml
 ```sh
 kubectl get namespaces
 ```
+![image](https://github.com/user-attachments/assets/4b7022ae-127c-4a95-82c9-0c63c160a451)
 
 ### Vérifier que les pods sont en cours d'exécution
 Ces commandes vont nous permettre de voir les pod créer sur les 3 environnements 
@@ -106,6 +100,9 @@ kubectl get services -n dev
 kubectl get services -n preprod
 kubectl get services -n prod
 ```
+![image](https://github.com/user-attachments/assets/c455c4cd-791e-4ac0-b36f-4db6eb77ed29)
+![image](https://github.com/user-attachments/assets/bc700115-e6d0-4ee6-b504-a33ffd4bcf80)
+![image](https://github.com/user-attachments/assets/b576d080-cb13-4b91-9c23-3b5f4c62bc93)
 
 ## Accès aux Applications
 Pour accéder à l'application sur un environnement donné, utilisez :
