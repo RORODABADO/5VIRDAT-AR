@@ -145,8 +145,20 @@ Nous ponvons voir que les transactions remonte bien (des 3 applications des diff
 
 # Déploiement de la deuxième application
 
+Pour cette deuxième applications, nous allons utilisée "django-admnlte".
 
+Cette application fonctionne avec une base de données mysql.
 
+Par manque de temps, je n'ai pas pu déployer cette application sur les 3 namespace, donc il n'y aura que pour le namespace "dev".
+
+En premier il faut télécharger le manifest en yam (https://github.com/RORODABADO/5VIRDAT-AR/blob/main/django-adminlte.yaml). 
+
+```sh
+git clone https://github.com/RORODABADO/5VIRDAT-AR/blob/main/django-adminlte.yaml
+kubectl apply -f django-adminlte.yaml
+```
+### Secret
+Dans ce manifest nous déployons un nouveau composant à kubernetes "Secret", ce composantdans Kubernetes permet de stocker des informations sensibles telles que des mots de passe, des jetons d'authentification ou des clés d'API. Ces données sont encodées en base64 pour être stockées en toute sécurité dans Kubernetes, et elles ne sont pas visibles en texte clair dans les fichiers de configuration.
 
 ## Auteurs
 - **Antoine Rotinat**
