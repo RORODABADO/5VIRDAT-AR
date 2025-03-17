@@ -160,7 +160,7 @@ kubectl apply -f django-adminlte.yaml
 ### Secret
 Dans ce manifest nous déployons un nouveau composant à kubernetes "Secret", ce composantdans Kubernetes permet de stocker des informations sensibles telles que des mots de passe, des jetons d'authentification ou des clés d'API. Ces données sont encodées en base64 pour être stockées en toute sécurité dans Kubernetes, et elles ne sont pas visibles en texte clair dans les fichiers de configuration.
 
-Ensuite j'ai forcer la creation de la bdd en ouvrant un shell sur le pod de mon applications : 
+Ensuite j'ai forcer la creation de la bdd en ouvrant un shell sur le pod de mon application : 
 
 ```sh
 kubectl exec -it django-adminlte-deployment-67df864757-sqtvh -n dev -- /bin/bash
@@ -168,7 +168,19 @@ python manage.py migrate
 ```
 
 ### Tests et vérification
-Pour vérifier que notre application fonctionne correctement, et est bien relier à notre pod bdd  
+Pour vérifier que notre application fonctionne correctement, et est bien relier à notre pod bdd on peut ce connecter sur le pod bdd et rechercher la database et les tables : 
+```sh
+kubectl exec -it django-adminlte-deployment-67df864757-sqtvh -- bash
+mysql -u root -p
+SHOW DATABASES;
+USE appseed_db_dev;
+SELECT * FROM auth_user;
+```
+![image](https://github.com/user-attachments/assets/5a76d3d5-84be-44e3-9629-4e0a58187a62)
+![image](https://github.com/user-attachments/assets/7c914036-a538-408d-9125-dab7e21434e1)
+
+
+Nous pouvons voir que la base à bien été créer et que les information sont bien saisie.
 
 
 
