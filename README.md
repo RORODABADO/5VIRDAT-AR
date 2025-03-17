@@ -128,6 +128,15 @@ Une fois nos applications exposé nous pouvons nous connecter via les url plus h
 - PreProd : ![image](https://github.com/user-attachments/assets/7c2cf121-7a4e-4574-bd9b-d35657ca7f08)
 - Prod :![image](https://github.com/user-attachments/assets/63b0888f-9d87-4293-8244-ec1b5ab38c9f)
 
+Pour tester le bon fonctionnement avec l'api STRIPE, nous pouvons effecter un achat sur l'application pour voir si cela remonte bien dans le dashboard STRIPE (pour l'utilisation de l'application, il faut ce référé sur repo de celle-ci) : 
+![image](https://github.com/user-attachments/assets/abd8ecee-2d4f-4705-99fa-5c42aa7ad30f)
+![image](https://github.com/user-attachments/assets/0a7a1c11-89d9-4253-a0c8-4540558f4bd3)
+
+Nous ponvons voir que les transactions remonte bien et que les clé api ce sont bien injecter via les ConfigMap : 
+![image](https://github.com/user-attachments/assets/f4417728-dec9-4795-8b03-bf0aa32744fa)
+
+
+
 
 ## Auteurs
 - **Antoine Rotinat**
